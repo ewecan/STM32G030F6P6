@@ -18,23 +18,23 @@
 
 #include "dr_button_api.h"
 
+// ++ 需要另外定义引脚: KEY##x##_GPIO_Port, KEY##x##_Pin ;
+// 例如: KEY1_GPIO_Port, KEY1_Pin
+#define ReadKey(x)                                                           \
+	static uint8_t ReadKey##x(void)                                          \
+	{                                                                        \
+		return (HAL_GPIO_ReadPin(KEY##x##_GPIO_Port, KEY##x##_Pin) ? 0 : 1); \
+	}
+
 static ClickEvent key_num = KEY_None;
 static Button key;
 
-/*********************************************************/
-// ++ 需要另外定义引脚: KEY##x##_GPIO_Port, KEY##x##_Pin ;
-// 例如: KEY1_GPIO_Port, KEY1_Pin
-#define ReadKey(x) \
-	static uint8_t ReadKey##x(void) { return (HAL_GPIO_ReadPin(KEY##x##_GPIO_Port, KEY##x##_Pin) ? 0 : 1); }
-
-
+/**********************************************************8***********************/
 /* 注册按键按下 KEY1 */
 ReadKey(1);
-//ReadKey(2);
-//ReadKey(3);
-	
-	
-	
+// ReadKey(2);
+// ReadKey(3);
+
 static void Key_PRESS_DOWN_Handler(void *btn, PressEvent event)
 {
 	if (event & SINGLE_CLICK)
