@@ -1,8 +1,8 @@
 #ifndef _dr_key_H
 #define _dr_key_H
-
-#include "stm32g0xx_hal.h"
+ 
 #include "dr_button_reg.h"
+
 typedef enum
 {
     KEY_None = 0,
